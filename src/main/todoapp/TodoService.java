@@ -8,27 +8,41 @@ public class TodoService {
 	private ArrayList<Todo> todoList = new ArrayList<>();
 	
 	Todo createTodo(String user, String todoText) {
-		Todo todo = new Todo();
+		try {
+			Todo todo = new Todo();
+			todo.setId(UUID.randomUUID().toString());
+			todo.setText(todoText);
+			todo.setUser(user);
+			todo.setStatus("pending");			
+			this.todoList.add(todo);
+			return todo;
+		} catch (Exception e) {
+			System.out.println("Error occured while creating");
+			return null;
+		}
 		
-        todo.setId(UUID.randomUUID().toString());
-		todo.setText(todoText);
-		todo.setUser(user);
-		todo.setStatus("pending");
-		
-		this.todoList.add(todo);
-		
-		return todo;
 	}
 	
 	Todo markAsComplete(Integer index) {
-		Todo todoToComplete = this.todoList.get(index);
-		todoToComplete.setStatus("complete");
-		Todo todoCompleted = this.todoList.set(index, todoToComplete);
-		return todoCompleted;
+		try {
+			Todo todoToComplete = this.todoList.get(index);
+			todoToComplete.setStatus("complete");
+			Todo todoCompleted = this.todoList.set(index, todoToComplete);
+			return todoCompleted;
+			
+		} catch (Exception e) {
+			System.out.println("Entered index of todo item is not correct.");
+			return null;
+		}
 	}
 	
 	Todo deleteTodo(int index) {
-		return this.todoList.remove(index);
+		try {
+			return this.todoList.remove(index);			
+		} catch (Exception e) {
+			System.out.println("Entered index of todo item is not correct.");
+			return null;
+		}
 	}
 	
 	void viewAllTodo() {

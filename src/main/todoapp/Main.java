@@ -34,24 +34,29 @@ public class Main {
 					String user = in.nextLine();
 					
 					Todo todo = todoService.createTodo(user, text);
-					System.out.println("Below todo created successfully");
-					System.out.println(todo);
+					if (todo != null) {
+						System.out.println("Below todo created successfully");
+						System.out.println(todo);
+					}
 					break;
 				
 				case "3":
 					System.out.println("Enter the index to be deleted:");
 					int index = in.nextInt();
 					Todo todoRemoved = todoService.deleteTodo(index - 1);
-					
-					System.out.println("Below todo got removed successfully");
-					System.out.println(todoRemoved);
+					if (todoRemoved != null) {
+						System.out.println("Below todo got removed successfully");
+						System.out.println(todoRemoved);
+					}
 					break;
 					
 				case "4":
 					System.out.println("Enter the index to mark as complete:");
 					int idx = in.nextInt();
 					Todo todoCompleted = todoService.markAsComplete(idx - 1);
-					System.out.println(todoCompleted);
+					if (todoCompleted != null) {
+						System.out.println(todoCompleted);
+					}
 					break;
 					
 				case "5":
@@ -67,6 +72,7 @@ public class Main {
 					break;
 	
 				default:
+					System.out.println("Please enter valid option\n");
 					break;
 			}
 	        
